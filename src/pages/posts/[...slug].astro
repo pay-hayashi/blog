@@ -19,7 +19,7 @@ const {entry} = Astro.props
 const date = dayjs(entry.data.date)
 const {Content} = await entry.render()
 ---
-<Layout>
+<Layout title={entry.data.title}>
     <style global>
         main article section h2 {
             @apply relative text-3xl font-bold mt-12 mb-5 pb-2 border-b-[4px] border-orange-200;
