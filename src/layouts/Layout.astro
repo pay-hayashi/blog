@@ -19,10 +19,12 @@ const blogTitle = 'pancake_tor\'s blog';
 </head>
 <body class="bg-neutral-100 text-neutral-900">
 <div class="grid grid-cols-1 gap-10">
-    <header class="h-16 flex justify-around items-center bg-neutral-700 text-white">
-        <div>
-            <span class="font-bold">{blogTitle}</span>
-        </div>
+    <header class="h-80 flex flex-col justify-center items-center bg-neutral-700 text-white text-center">
+        <p class="text-3xl font-bold">{blogTitle}</p>
+        <p class="text-lg">
+            パンケーキガメ(pancake_tor)のブログです。<br/>
+            作ってみました。
+        </p>
     </header>
 
     <slot/>

@@ -2,6 +2,7 @@
 import {getCollection, type CollectionEntry} from 'astro:content'
 import Layout from "../../layouts/Layout.astro";
 import dayjs from "dayjs";
+import H1 from "../../components/atoms/H1.astro";
 export async function getStaticPaths() {
   const entries = await getCollection('blog')
   return entries.map((entry) => {
@@ -38,9 +39,9 @@ const {Content} = await entry.render()
         <main class="col-span-2 p-16 bg-white">
             <article class="grid gap-16">
                 <header class="grid gap-3">
-                    <h1 class="text-4xl font-bold">{entry.data.title}</h1>
+                    <H1>{entry.data.title}</H1>
                     <p class="text-neutral-500">
-                        投稿日時：
+                        投稿日：
                         <time datetime={date.toISOString()}>{date.format('YYYY-MM-DD')}</time>
                     </p>
                 </header>

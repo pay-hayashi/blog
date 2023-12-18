@@ -1,7 +1,9 @@
 ---
 title: Test Post
+description: お試しにページを作ってみた。マークダウンで書けるのは便利。
 date: 2023-12-17
 tags: ['blog']
+src: https://placehold.jp/150x150.png
 ---
 
 お試しにページを作ってみる
