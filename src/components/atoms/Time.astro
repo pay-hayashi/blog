@@ -1,0 +1,16 @@
+---
+import {Dayjs} from "dayjs";
+import {twMerge} from "tailwind-merge";
+interface Props {
+  label: string
+  datetime: Dayjs
+}
+const {label, datetime} = Astro.props
+---
+
+<div class="flex whitespace-nowrap">
+  {label}
+    <time datetime={datetime.toISOString()}>
+      {datetime.format('YYYY年MM月DD日 HH時mm分')}
+    </time>
+</div>

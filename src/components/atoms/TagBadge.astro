@@ -1,0 +1,16 @@
+---
+interface Props {
+  name: string
+}
+const {name} = Astro.props
+---
+
+<span class="text-xs bg-neutral-200 rounded-full px-2 py-1">
+  {name}
+</span>
+
+<style>
+    span::before {
+        content: '#';
+    }
+</style>

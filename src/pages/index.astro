@@ -2,27 +2,22 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import H1 from "../components/atoms/H1.astro";
-import {getCollection} from "astro:content";
+import {post} from "../domain/post";
 
-const posts = (await getCollection('blog')).map((post) => ({
-  title: post.data.title,
-  description: post.data.description,
-  src: post.data.src,
-  href: `posts/${post.slug}`,
-}))
+const res = await post.getPosts()
 ---
 
 <Layout title="Welcome to Astro.">
     <div class="flex flex-col gap-10 w-full max-w-7xl mx-auto">
-        <main class="p-16 bg-white">
+        <main class="px-5 p-10 md:p-16 bg-white">
             <header>
                 <H1 size="sm">記事一覧</H1>
             </header>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
+            <div class="mt-5 md:mt-10 grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-10">
               {
-                posts.map((post) => (
-                        <a href={post.href}>
-                            <Card title={post.title} description={post.description} src={post.src}/>
+                res.contents.map((post) => (
+                        <a href={`posts/${post.id}`}>
+                            <Card title={post.title} tags={post.tags} src={post.image.url}/>
                         </a>
                 ))
               }

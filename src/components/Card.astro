@@ -1,11 +1,13 @@
 ---
+import {Tag} from "../domain/tag";
+import TagBadge from "./atoms/TagBadge.astro";
 interface Props {
   title: string
-  description: string
+  tags: Tag[]
   src: string
 }
 
-const {title, description, src} = Astro.props;
+const {title, tags, src} = Astro.props;
 ---
 
 <div class="h-32 flex items-center border">
@@ -14,8 +16,13 @@ const {title, description, src} = Astro.props;
         <h2 class="text-lg font-bold">
           {title}
         </h2>
-        <p class="text-sm line-clamp-2">
-          {description}
-        </p>
+        <div class="flex gap-3">
+          {
+              tags.map((tag) => <TagBadge name={tag.name}/>)
+          }
+          {
+              tags.map((tag) => <TagBadge name={tag.name}/>)
+          }
+        </div>
     </div>
 </div>
