@@ -1,0 +1,18 @@
+---
+import {twMerge} from "tailwind-merge";
+interface Props {
+  size: 'sm' | 'md'
+}
+const {size} = Astro.props
+const sizes = {
+  sm: 'text-2xl',
+  md: 'text-4xl',
+} as const
+---
+
+<h1 class={twMerge(
+  "font-bold",
+  sizes[size ?? 'md'],
+)}>
+    <slot/>
+</h1>

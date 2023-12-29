@@ -1,0 +1,71 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
+import H1 from "../../components/atoms/H1.astro";
+import {Post, post} from "../../domain/post";
+import Time from "../../components/atoms/Time.astro";
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
+export async function getStaticPaths() {
+  return (await post.getPosts()).contents.map((post) => ({
+    params: {slug: post.id},
+    props: {post}
+  }))
+}
+
+interface Props {
+  post: Post
+}
+const {post} = Astro.props
+const dates = {
+  createdAt: dayjs(post.createdAt),
+  updatedAt: dayjs(post.updatedAt),
+  publishedAt: dayjs(post.publishedAt),
+  revisedAt: dayjs(post.revisedAt)
+}
+---
+<Layout title={post.title}>
+    <style global>
+        main article section h1 {
+            @apply relative mt-12 mb-5 pb-2 text-3xl font-bold border-b-[4px] border-orange-200;
+        }
+
+        main article section h1::before {
+            @apply w-1/6 absolute left-0 h-[4px] -bottom-[4px] bg-orange-500 content-[''];
+        }
+
+        main article section h2 {
+            @apply text-2xl mt-10 mb-5 pl-3 font-bold border-l-8 border-orange-500;
+        }
+
+        main article section h3 {
+            @apply inline-block mt-10 mb-5 text-lg font-bold border-b-2 border-orange-500;
+        }
+    </style>
+
+    <div class="grid grid-cols-2 gap-10 w-full max-w-7xl mx-auto">
+        <main class="col-span-2 px-6 py-16 md:p-16 bg-white">
+            <article class="grid gap-16">
+                <header class="h-24 flex gap-10 items-center">
+                  {
+                    post.image?.url
+                      ? <img src={post.image.url} alt="サムネイル" class="hidden md:inline h-full aspect-square"/>
+                      : null
+                  }
+                    <div class="grid gap-3">
+                        <H1>{post.title}</H1>
+                        <div class="flex flex-wrap gap-x-10 text-neutral-500">
+                            <Time label="公開日時：" datetime={dates.publishedAt}/>
+                            <Time label="最終更新日時：" datetime={dates.revisedAt}/>
+                        </div>
+                    </div>
+                </header>
+                <section set:html={post.content}></section>
+            </article>
+        </main>
+    </div>
+</Layout>
