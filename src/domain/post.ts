@@ -24,7 +24,7 @@ export type PostResponse = {
   contents: Post[]
 }
 
-export const post = {
+export const postClient = {
   getPosts: async (queries: MicroCMSQueries = {}) => {
     return await client.get<PostResponse>({
       endpoint: "posts", queries

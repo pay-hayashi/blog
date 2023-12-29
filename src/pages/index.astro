@@ -2,9 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import H1 from "../components/atoms/H1.astro";
-import {post} from "../domain/post";
+import {postClient} from "../domain/post";
 
-const res = await post.getPosts()
+const res = await postClient.getPosts()
 ---
 
 <Layout title="Welcome to Astro.">

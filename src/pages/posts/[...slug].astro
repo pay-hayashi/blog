@@ -4,14 +4,14 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
 import H1 from "../../components/atoms/H1.astro";
-import {Post, post} from "../../domain/post";
+import {type Post, postClient} from "../../domain/post";
 import Time from "../../components/atoms/Time.astro";
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
 export async function getStaticPaths() {
-  return (await post.getPosts()).contents.map((post) => ({
+  return (await postClient.getPosts()).contents.map((post: Post) => ({
     params: {slug: post.id},
     props: {post}
   }))
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 interface Props {
   post: Post
 }
-const {post} = Astro.props
+const {post} = Astro.props as Props
 const dates = {
   createdAt: dayjs(post.createdAt),
   updatedAt: dayjs(post.updatedAt),
@@ -29,7 +29,7 @@ const dates = {
 }
 ---
 <Layout title={post.title}>
-    <style global>
+    <style is:global>
         main article section h1 {
             @apply relative mt-12 mb-5 pb-2 text-3xl font-bold border-b-[4px] border-orange-200;
         }

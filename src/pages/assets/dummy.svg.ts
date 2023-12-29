@@ -1,8 +1,10 @@
 import satori from "satori";
 import type {APIRoute} from "astro";
 
+// @ts-ignore
+const raleway = fs.readFileSync('public/fonts/Raleway-Medium.ttf')
+
 export const GET: APIRoute = async () => {
-  const raleway = fs.readFileSync('public/fonts/Raleway-Medium.ttf')
   const svg = await satori({
     type: "div",
     props: {
