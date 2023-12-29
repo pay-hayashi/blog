@@ -17,7 +17,7 @@ const res = await post.getPosts()
               {
                 res.contents.map((post) => (
                         <a href={`posts/${post.id}`}>
-                            <Card title={post.title} tags={post.tags} src={post.image.url}/>
+                            <Card title={post.title} tags={post.tags} src={post.image?.url}/>
                         </a>
                 ))
               }

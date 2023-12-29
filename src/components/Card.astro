@@ -4,10 +4,10 @@ import TagBadge from "./atoms/TagBadge.astro";
 interface Props {
   title: string
   tags: Tag[]
-  src: string
+  src: string | undefined
 }
 
-const {title, tags, src} = Astro.props;
+const {title, tags, src = '/assets/dummy.svg'} = Astro.props;
 ---
 
 <div class="h-32 flex items-center border">
@@ -17,9 +17,6 @@ const {title, tags, src} = Astro.props;
           {title}
         </h2>
         <div class="flex gap-3">
-          {
-              tags.map((tag) => <TagBadge name={tag.name}/>)
-          }
           {
               tags.map((tag) => <TagBadge name={tag.name}/>)
           }

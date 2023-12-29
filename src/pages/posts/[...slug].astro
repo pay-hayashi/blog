@@ -51,7 +51,11 @@ const dates = {
         <main class="col-span-2 px-6 py-16 md:p-16 bg-white">
             <article class="grid gap-16">
                 <header class="h-24 flex gap-10 items-center">
-                    <img src={post.image.url} alt="サムネイル" class="hidden md:inline h-full aspect-square"/>
+                  {
+                    post.image?.url
+                      ? <img src={post.image.url} alt="サムネイル" class="hidden md:inline h-full aspect-square"/>
+                      : null
+                  }
                     <div class="grid gap-3">
                         <H1>{post.title}</H1>
                         <div class="flex flex-wrap gap-x-10 text-neutral-500">
