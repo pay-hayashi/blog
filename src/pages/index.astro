@@ -16,7 +16,7 @@ const res = await postClient.getPosts()
             <div class="mt-5 md:mt-10 grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-10">
               {
                 res.contents.map((post) => (
-                        <a href={`posts/${post.id}`}>
+                        <a href={`blog/posts/${post.id}`}>
                             <Card title={post.title} tags={post.tags} src={post.image?.url}/>
                         </a>
                 ))
